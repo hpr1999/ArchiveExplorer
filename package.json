@@ -10,7 +10,7 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:archiveexplorer.helloWorld"
+		"onView:archives"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -19,7 +19,16 @@
 				"command": "archiveexplorer.helloWorld",
 				"title": "Hello World"
 			}
-		]
+		],
+		"views": {
+			"explorer": [
+				{
+					"id": "archives",
+					"name": "Archives",
+					"when": ""
+				}
+			]
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
@@ -30,16 +39,20 @@
 		"test": "node ./out/test/runTest.js"
 	},
 	"devDependencies": {
-		"@types/vscode": "^1.43.0",
+		"@types/adm-zip": "^0.4.32",
 		"@types/glob": "^7.1.1",
 		"@types/mocha": "^7.0.2",
 		"@types/node": "^13.11.0",
-		"eslint": "^6.8.0",
-		"@typescript-eslint/parser": "^2.26.0",
+		"@types/vscode": "^1.43.0",
 		"@typescript-eslint/eslint-plugin": "^2.26.0",
+		"@typescript-eslint/parser": "^2.26.0",
+		"eslint": "^6.8.0",
 		"glob": "^7.1.6",
 		"mocha": "^7.1.1",
 		"typescript": "^3.8.3",
 		"vscode-test": "^1.3.0"
+	},
+	"dependencies": {
+		"adm-zip": "^0.4.14"
 	}
 }
