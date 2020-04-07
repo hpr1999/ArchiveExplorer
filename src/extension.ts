@@ -16,9 +16,10 @@ export function activate(context: vscode.ExtensionContext) {
 	vscode.window.onDidChangeActiveTextEditor(e => {
 		if (e?.document) {
 			let root = RootCreator.createArchiveRoot(e.document.uri);
-			if (root) { 
-				explorer.setRoot(root); 
-				vscode.commands.executeCommand("workbench.action.closeActiveEditor");			}
+			if (root) {
+				explorer.setRoot(root);
+				vscode.commands.executeCommand("workbench.action.closeActiveEditor");
+			}
 		}
 	});
 }
