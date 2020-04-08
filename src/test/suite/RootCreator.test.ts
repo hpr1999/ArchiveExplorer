@@ -5,7 +5,7 @@ import * as assert from 'assert';
 import * as vscode from 'vscode';
 import * as tempy from 'tempy';
 import { RootCreator } from '../../RootCreator';
-import {Parser} from  '../../ZipEntryNG';
+import {Parser} from  '../../ZipEntry';
 import * as AdmZip from "adm-zip";
 
 suite('Extension Test Suite', () => {

@@ -1,14 +1,14 @@
 import { TreeDataProvider, TreeItem, Event, ProviderResult, EventEmitter } from 'vscode';
-import { ArchiveEntry, Archive } from './ArchiveEntry';
+import { ArchiveEntry } from './ArchiveEntry';
 
 export class ArchiveTreeExplorer implements TreeDataProvider<ArchiveEntry> {
 
-    root?: undefined | Archive;
+    root?: undefined | ArchiveEntry;
 
     private _onDidChangeTreeData: EventEmitter<ArchiveEntry | undefined> = new EventEmitter<ArchiveEntry | undefined>();
     readonly onDidChangeTreeData: Event<ArchiveEntry | undefined> = this._onDidChangeTreeData.event;
 
-    public setRoot(archive: Archive | undefined) {
+    public setRoot(archive: ArchiveEntry | undefined) {
         this.root = archive;
         this._onDidChangeTreeData.fire(undefined);
     }
