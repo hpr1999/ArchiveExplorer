@@ -16,8 +16,12 @@
 	"contributes": {
 		"commands": [
 			{
-				"command": "archiveexplorer.removeRoot",
+				"command": "archiveexplorer.treeView.removeRoot",
 				"title": "Remove Archive from TreeView"
+			},
+			{
+				"command": "archiveexplorer.treeView.addRoot",
+				"title": "Add Archive to TreeView"
 			}
 		],
 		"views": {
@@ -30,9 +34,16 @@
 			]
 		},
 		"menus": {
+			"explorer/context": [
+				{
+					"command": "archiveexplorer.treeView.addRoot",
+					"when": "resourceExtname == .zip",
+					"group": "navigation"
+				}
+			],
 			"view/item/context": [
 				{
-					"command": "archiveexplorer.removeRoot",
+					"command": "archiveexplorer.treeView.removeRoot",
 					"when": "viewItem==archive"
 				}
 			]

@@ -24,9 +24,19 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	});
 
-	context.subscriptions.push(vscode.commands.registerCommand("archiveexplorer.removeRoot", (node: ArchiveEntry) => {
-		explorer.removeRoot(node);
-	}));
+	context.subscriptions.push(
+		vscode.commands.registerCommand("archiveexplorer.treeView.removeRoot", (node: ArchiveEntry) => {
+			if (node) { explorer.removeRoot(node); }
+		}),
+		vscode.commands.registerCommand("archiveexplorer.treeView.addRoot", (uri: vscode.Uri) => {
+			if (uri) {
+				let root = RootCreator.createArchiveRoot(uri);
+				if (root) {
+					explorer.addRoot(root);
+				}
+			};
+		})
+	);
 
 	context.subscriptions.push(view);
 }
