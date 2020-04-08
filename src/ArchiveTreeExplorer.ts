@@ -17,7 +17,8 @@ export class ArchiveTreeExplorer implements TreeDataProvider<ArchiveEntry> {
         return element;
     }
     getChildren(element?: ArchiveEntry | undefined): ArchiveEntry[] | undefined {
-        return element?.getChildren() || this.root?.getChildren();
+        if (element) { return element.getChildren(); }
+        if (this.root) { return [this.root]; }
     }
 
 }
