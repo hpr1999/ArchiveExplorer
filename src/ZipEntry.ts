@@ -57,6 +57,7 @@ export class Parser {
     public parse(): ZipEntry {
         let result = new ZipEntry("", null, this.uri, this.parseChildren("/"));
         result.label = this.sliceNameFromUri();
+        result.contextValue="archive";
         return result;
     }
 

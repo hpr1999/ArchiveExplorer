@@ -3,13 +3,18 @@ import { ArchiveEntry } from './ArchiveEntry';
 
 export class ArchiveTreeExplorer implements TreeDataProvider<ArchiveEntry> {
 
-    root?: undefined | ArchiveEntry;
+    root: Set<ArchiveEntry> = new Set;
 
     private _onDidChangeTreeData: EventEmitter<ArchiveEntry | undefined> = new EventEmitter<ArchiveEntry | undefined>();
     readonly onDidChangeTreeData: Event<ArchiveEntry | undefined> = this._onDidChangeTreeData.event;
 
-    public setRoot(archive: ArchiveEntry | undefined) {
-        this.root = archive;
+    public addRoot(archive: ArchiveEntry) {
+        this.root.add(archive);
+        this._onDidChangeTreeData.fire(undefined);
+    }
+
+    public removeRoot(archive: ArchiveEntry) {
+        this.root.delete(archive);
         this._onDidChangeTreeData.fire(undefined);
     }
 
@@ -18,7 +23,7 @@ export class ArchiveTreeExplorer implements TreeDataProvider<ArchiveEntry> {
     }
     getChildren(element?: ArchiveEntry | undefined): ArchiveEntry[] | undefined {
         if (element) { return element.getChildren(); }
-        if (this.root) { return [this.root]; }
+        if (this.root) { return Array.from(this.root); }
     }
 
 }

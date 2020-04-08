@@ -16,8 +16,8 @@
 	"contributes": {
 		"commands": [
 			{
-				"command": "archiveexplorer.helloWorld",
-				"title": "Hello World"
+				"command": "archiveexplorer.removeRoot",
+				"title": "Remove Archive from TreeView"
 			}
 		],
 		"views": {
@@ -26,6 +26,14 @@
 					"id": "archives",
 					"name": "Archives",
 					"when": ""
+				}
+			]
+		},
+		"menus": {
+			"view/item/context": [
+				{
+					"command": "archiveexplorer.removeRoot",
+					"when": "viewItem==archive"
 				}
 			]
 		}
