@@ -5,6 +5,7 @@ import * as assert from 'assert';
 import * as vscode from 'vscode';
 import * as tempy from 'tempy';
 import { RootCreator } from '../../RootCreator';
+import {Parser} from  '../../ZipEntryNG';
 import * as AdmZip from "adm-zip";
 
 suite('Extension Test Suite', () => {
@@ -24,6 +25,8 @@ suite('Extension Test Suite', () => {
 	let zipUri: vscode.Uri = vscode.Uri.file(zipFile);
 
 	console.log(zipUri);
+
+	let v = new Parser(zipUri).parse();
 
 	test('ZipRootTest', () => {
 		let root = RootCreator.createArchiveRoot(zipUri);

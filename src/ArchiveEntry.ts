@@ -1,4 +1,4 @@
-import { TreeItem, Uri, TreeItemCollapsibleState, workspace } from "vscode";
+import { TreeItem } from "vscode";
 
 export interface ArchiveEntry extends TreeItem {
     getChildren(): ArchiveEntry[];
