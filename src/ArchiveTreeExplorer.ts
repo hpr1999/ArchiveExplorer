@@ -1,7 +1,7 @@
 import { TreeDataProvider, TreeItem, Event, ProviderResult, EventEmitter } from 'vscode';
 import { ArchiveEntry, Archive } from './ArchiveEntry';
 
-export class ArchiveExplorer implements TreeDataProvider<ArchiveEntry>  {
+export class ArchiveTreeExplorer implements TreeDataProvider<ArchiveEntry> {
 
     root?: undefined | Archive;
 

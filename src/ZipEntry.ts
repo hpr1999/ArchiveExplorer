@@ -1,7 +1,5 @@
 import { ArchiveEntry, Archive } from "./ArchiveEntry";
-import { TreeItem, Uri, TreeItemCollapsibleState, workspace } from "vscode";
-import { sep } from "path";
-import { ZipParser } from "./ZipParser";
+import { TreeItem, TreeItemCollapsibleState } from "vscode";
 
 export class ZipEntry extends TreeItem implements ArchiveEntry {
 
@@ -13,32 +11,14 @@ export class ZipEntry extends TreeItem implements ArchiveEntry {
     }
 
     getChildren(): ArchiveEntry[] {
-        return this.children; // TODO
+        return this.children;
     }
 
 }
 
 export class ZipFile extends ZipEntry implements Archive {
 
-    static fileSuffix = ".zip";
-
-    private uri: Uri;
-
-    constructor(uri: Uri) {
-
-        super(ZipFile.sliceNameFromUri(uri), TreeItemCollapsibleState.Expanded, ZipParser.createChildren(uri));
-        this.uri = uri;
+    constructor(label: string, children: ZipEntry[]) {
+        super(label,TreeItemCollapsibleState.Expanded,children);
     }
-
-    // TODO move
-    private static sliceNameFromUri(uri: Uri): string {
-        let fsString = uri.fsPath.toString();
-        return fsString.slice(fsString.lastIndexOf(sep) + 1, fsString.lastIndexOf("."));
-    }
-
-    getUri(): Uri {
-        return this.uri;
-    }
-
-
 }

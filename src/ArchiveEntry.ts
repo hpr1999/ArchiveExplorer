@@ -5,5 +5,4 @@ export interface ArchiveEntry extends TreeItem {
 }
 
 export interface Archive extends ArchiveEntry {
-    getUri(): Uri;
 }

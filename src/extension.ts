@@ -1,14 +1,14 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
-import { ArchiveExplorer } from './ArchiveExplorer';
+import { ArchiveTreeExplorer } from './ArchiveTreeExplorer';
 import { RootCreator } from './rootCreator';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
 
-	const explorer = new ArchiveExplorer();
+	const explorer = new ArchiveTreeExplorer();
 
 	const view = vscode.window.createTreeView("archives", { treeDataProvider: explorer, canSelectMany: false, showCollapseAll: true });
 

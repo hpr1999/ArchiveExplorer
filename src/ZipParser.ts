@@ -1,10 +1,13 @@
 import { TreeItemCollapsibleState, Uri } from "vscode";
-import { ZipEntry } from "./ZipEntry";
+import { ZipEntry, ZipFile } from "./ZipEntry";
 import * as AdmZip from "adm-zip";
+import {sep} from "path";
 
 export class ZipParser {
-    // TODO change into createZipFile
-    public static createChildren(file: Uri): ZipEntry[] {
+
+    public static fileSuffix = ".zip";
+
+    public static createZipFile(file: Uri): ZipFile {
         let zip = new AdmZip(file.fsPath);
         let childrenMap = new Map<string, Set<string>>();
 
@@ -38,8 +41,13 @@ export class ZipParser {
                 }
             }
         }
-
-        return result;
+        
+        return new ZipFile(ZipParser.sliceNameFromUri(file),result);
+    }
+    
+    private static sliceNameFromUri(uri: Uri): string {
+        let fsString = uri.fsPath.toString();
+        return fsString.slice(fsString.lastIndexOf(sep) + 1, fsString.lastIndexOf("."));
     }
 
     private static parseEntry(entryName: string, map: Map<string, Set<string>>): void {
